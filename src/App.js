@@ -78,6 +78,17 @@ class App extends React.Component {
     return count;
   }
 
+  getCartTotal = () => {
+    const {products} = this.state;
+    let total = 0;
+
+    products.forEach(product => {
+      total += product.qty*product.price;
+    });
+
+    return total;
+  }
+
   render() {
     const { products } = this.state;
     return (
@@ -89,9 +100,25 @@ class App extends React.Component {
           onDecreaseQuantity={this.handleDecreaseQuantity}
           onDeleteProduct={this.handleDeleteProduct}
         />
+        <div style={{fontSize:20,padding:10}}>Total: {this.getCartTotal()}</div>
       </div>
     );
   }
 }
 
 export default App;
+
+
+/*
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  
+</script>
+
+
+*/
